@@ -3,6 +3,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import { ConectFireBase } from './shared/connect.service';
 
 @Component({
   selector: 'app-root',
@@ -14,43 +15,46 @@ export class AppComponent {
   items: FirebaseListObservable<any[]>;
   msgVal: string = '';
   change = {};
-  modifVariable =''
+  modifVariable = ''
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list('/messages', {
+  constructor(public ConnectFire: ConectFireBase, public af: AngularFireDatabase) {
+
+  }
+
+  ngOnInit() {
+
+    this.user = this.ConnectFire.users();
+    this.items = this.af.list('/messages', {
       query: {
         limitToLast: 50
       }
     });
 
-    
+  }
 
-    this.user = this.afAuth.authState;
+  loginFire() {
+    this.ConnectFire.login();
+  }
 
+  logoutFire() {
+    this.ConnectFire.logout();
   }
-  login() {
-    this.afAuth.auth.signInAnonymously();
-  }
-  
-  logout() {
-    this.afAuth.auth.signOut();
-  }
-  
+
   Send(desc: string) {
-    this.items.push({ message: desc});
+    this.items.push({ message: desc });
     this.msgVal = '';
   }
-  delete(msgVal:string){
-  this.items.remove(msgVal); 
-}
+  delete(msgVal: string) {
+    this.items.remove(msgVal);
+  }
 
-modify(msgVal:string, desc){
+  modify(msgVal: string, desc) {
 
-  // this.items.set(msgVal, {message: desc});
+    // this.items.set(msgVal, {message: desc});
 
-  this.change[msgVal] = false;
-  this.items.set(msgVal, {
-    message: this.modifVariable
-  });
-}
+    this.change[msgVal] = false;
+    this.items.set(msgVal, {
+      message: this.modifVariable
+    });
+  }
 }

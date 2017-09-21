@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
+import {ConectFireBase} from './shared/connect.service';
 
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -34,9 +35,12 @@ export const firebaseConfig = {
       HttpModule,
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireDatabaseModule,
-      AngularFireAuthModule,
+      AngularFireAuthModule
   ],
-  providers: [],
+  providers: [
+    ConectFireBase
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
