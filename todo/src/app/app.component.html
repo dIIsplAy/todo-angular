@@ -1,0 +1,15 @@
+<div class="row columns">
+    <button (click)="login()" *ngIf="!(user | async)?.uid">Anonymous Login</button>
+    <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
+
+    <input type="text" id="message" *ngIf="(user | async)?.uid" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />
+    <div id="details-container">
+        <p *ngFor="let item of items | async">
+            <img src="https://cdn2.iconfinder.com/data/icons/large-svg-icons-part-3/512/red_pin_map_location-128.png">
+            <span (dblclick)="change[item.$key] = true">{{item.message}}</span>
+            <button id="del" (click)="delete(item.$key)">X</button>
+            <input *ngIf="change[item.$key]" type="text" [(ngModel)]="modifVaribale">
+        </p>
+
+    </div>
+</div>

@@ -1,0 +1,31 @@
+body {
+    background-color: #EBEBEB;
+    padding-top: 5em;
+}
+
+* {
+    font-family: 'Raleway';
+}
+
+button {
+    background: #008FEF;
+    color: white;
+    padding: 1.2em;
+    width: 300px;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+#del {
+    background: #FF0000;
+    color: white;
+    padding: 1.2em;
+    width: 40px;
+    text-align: center;
+    font-size: 0.6em;
+    margin-bottom: 30px;
+    cursor: pointer;
+    margin-left: 10em;
+}
