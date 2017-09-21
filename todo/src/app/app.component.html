@@ -7,8 +7,9 @@
         <p *ngFor="let item of items | async">
             <img src="https://cdn2.iconfinder.com/data/icons/large-svg-icons-part-3/512/red_pin_map_location-128.png">
             <span (dblclick)="change[item.$key] = true">{{item.message}}</span>
-            <button id="del" (click)="delete(item.$key)">X</button>
-            <input *ngIf="change[item.$key]" type="text" [(ngModel)]="modifVaribale">
+            <button class="del" (click)="delete(item.$key)">X</button>
+            <input *ngIf="change[item.$key]" type="text" [(ngModel)]="modifVariable">
+            <button id="del" (click)="modify(item.$key)">Modify</button>
         </p>
 
     </div>

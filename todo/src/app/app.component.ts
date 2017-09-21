@@ -23,6 +23,8 @@ export class AppComponent {
       }
     });
 
+    
+
     this.user = this.afAuth.authState;
 
   }
@@ -42,7 +44,10 @@ export class AppComponent {
   this.items.remove(msgVal); 
 }
 
-modify(msgVal:string){
+modify(msgVal:string, desc){
+
+  // this.items.set(msgVal, {message: desc});
+
   this.change[msgVal] = false;
   this.items.set(msgVal, {
     message: this.modifVariable
